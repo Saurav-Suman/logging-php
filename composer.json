@@ -1,0 +1,19 @@
+{
+    "name": "saurav-suman/logger",
+	"description": "PHP client to publish realtime logs to rabbitmq",
+	"keywords": [],
+	"authors": [
+        {
+            "name": "Saurav Suman",
+            "homepage": "http://sauravsuman.com/"
+        }
+    ],
+    "require": {
+        "php-amqplib/php-amqplib": "^2.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Logging\\": "src/"
+        }
+    }
+}
