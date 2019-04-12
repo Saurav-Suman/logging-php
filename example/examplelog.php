@@ -3,7 +3,7 @@ require __DIR__.'../../vendor/autoload.php';
 
 use Logging\Logging;
 
-$log=new Logging();
+$log=Logging::getInstance();
 $log->setRabbitmqHost("127.0.0.1");
 $log->setRabbitmqPort("5672");
 $log->setRabbitmqUser("guest");
@@ -18,5 +18,5 @@ $log->setQueueNames(array("Api" => "api",
     "Critical" => "critical"));
 
 $log->connect();
-$log->info("saurav",array("sd"=>"Sdsd"));
-$log->warning("saurav",array("sd"=>"Sdsd"));
+$log->info("saurav",array("foo"=>"bar"));
+$log->warning("saurav",array("foo"=>"bar"));

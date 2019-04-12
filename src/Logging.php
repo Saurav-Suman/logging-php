@@ -300,6 +300,6 @@ class Logging
     /**
      * Disable constructor to prevent instantiation.
      */
-    public function __construct()
+    private function __construct()
     { }
 }
