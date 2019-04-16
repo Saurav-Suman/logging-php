@@ -27,7 +27,7 @@ class Amqp
 
             $this->channel = $this->connection->channel();
         } catch (\Exception  $e) {
-            echo $e;
+            throw new \Exception("amqp_connectio_error-".$e);
         }
     }
 
@@ -43,7 +43,7 @@ class Amqp
             $msg = new AMQPMessage($message);
             $this->channel->basic_publish($msg, '', $rmqQueueName);
         } catch (\Exception  $e) {
-            echo $e;
+            throw new \Exception("queue_message_insert_faliure-".$e);
         }
     }
 }

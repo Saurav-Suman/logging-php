@@ -6,4 +6,3 @@ class LoggingException extends Exception
 {
     
 }
-?>

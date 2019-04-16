@@ -121,7 +121,22 @@ class Logging
      */
     public function setQueueNames($queueArray)
     {
-        $this->QueueNames = $queueArray;
+        $KeysToMatch = array(
+            "Api",
+            "Debug",
+            "Info",
+            "Warn",
+            "Error",
+            "Critical"
+        );
+        $KeysRecieved = array_keys($queueArray);
+        $result = array_diff_key($KeysToMatch, $KeysRecieved);
+        if(count($result)>0){
+            throw new \Exception("Parameter Mismatch");
+        }else{
+            $this->QueueNames = $queueArray;
+        }
+        
     }
 
     /**
@@ -151,8 +166,8 @@ class Logging
                 $this->RabbitmqUser,
                 $this->RabbitmqPassword
             );
-        } catch (Exception $e) {
-            throw new Exception("rabbitmq_connection_failure-".$e);
+        } catch (\Exception $e) {
+            throw new \Exception("rabbitmq_connection_failure-" . $e);
         }
     }
 
@@ -161,10 +176,12 @@ class Logging
     public function publishMessage($message_details, $queueName)
     {
         try {
-            $this->amqpConnection->insertMessage($message_details, $this->QueuePrefix.".".$queueName);
+            //echo "call";
+            $this->amqpConnection->insertMessage($message_details, $this->QueuePrefix . "." . $queueName);
             return true;
-        } catch (Exception $e) {
-            throw new Exception("queue_message_insert_faliure-".$e);
+        } catch (\Exception $e) {
+            // echo "called";
+            throw new \Exception("queue_message_insert_faliure-" . $e);
         }
     }
 
@@ -252,10 +269,11 @@ class Logging
      */
     private function sendLog($log, $type = '')
     {
+
         try {
             $this->publishMessage($log, $type);
-        } catch (Exception $e) {
-            throw new Exception("queue_message_insert_faliure-".$e);
+        } catch (\Exception $e) {
+            throw new \Exception("queue_message_insert_faliure-" . $e);
         }
     }
 
