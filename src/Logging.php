@@ -43,10 +43,6 @@ class Logging
     private $QueueNames = array();
 
 
-    /*
-     * @var string|null Logoer Time Format
-     */
-    private $LoggerTimeFormat = null;
 
     /*
      * @var object|null Amqp Object
@@ -60,7 +56,11 @@ class Logging
      */
     public function setRabbitmqHost($host)
     {
-        $this->RabbitmqHost = $host;
+        if (trim($host) == "") {
+            throw new \Exception("Parameter Mismatch");
+        } else {
+            $this->RabbitmqHost = $host;
+        }
     }
 
 
@@ -71,7 +71,11 @@ class Logging
      */
     public function setRabbitmqPort($port)
     {
-        $this->RabbitmqPort = $port;
+        if (trim($port) == "") {
+            throw new \Exception("Parameter Mismatch");
+        } else {
+            $this->RabbitmqPort = $port;
+        }
     }
 
     /**
@@ -81,7 +85,11 @@ class Logging
      */
     public function setRabbitmqUser($user)
     {
-        $this->RabbitmqUser = $user;
+        if (trim($user) == "") {
+            throw new \Exception("Parameter Mismatch");
+        } else {
+            $this->RabbitmqUser = $user;
+        }
     }
 
     /**
@@ -91,7 +99,11 @@ class Logging
      */
     public function setRabbitmqPassword($password)
     {
-        $this->RabbitmqPassword = $password;
+        if (trim($password) == "") {
+            throw new \Exception("Parameter Mismatch");
+        } else {
+            $this->RabbitmqPassword = $password;
+        }
     }
 
     /**
@@ -104,15 +116,7 @@ class Logging
         $this->QueuePrefix = $prefix;
     }
 
-    /**
-     * Set the RabbitMQ msg timestamp
-     *
-     * @param string $url
-     */
-    public function setLoggerTimeFormat($format)
-    {
-        $this->LoggerTimeFormat = $format;
-    }
+
 
     /**
      * Set the RabbitMQ msg timestamp
@@ -131,12 +135,11 @@ class Logging
         );
         $KeysRecieved = array_keys($queueArray);
         $result = array_diff_key($KeysToMatch, $KeysRecieved);
-        if(count($result)>0){
+        if (count($result) > 0) {
             throw new \Exception("Parameter Mismatch");
-        }else{
+        } else {
             $this->QueueNames = $queueArray;
         }
-        
     }
 
     /**
@@ -167,7 +170,7 @@ class Logging
                 $this->RabbitmqPassword
             );
         } catch (\Exception $e) {
-            throw new \Exception("rabbitmq_connection_failure-" . $e);
+            throw new \Exception("RabbitMQ Connection Failure - " . $e);
         }
     }
 
@@ -176,12 +179,10 @@ class Logging
     public function publishMessage($message_details, $queueName)
     {
         try {
-            //echo "call";
             $this->amqpConnection->insertMessage($message_details, $this->QueuePrefix . "." . $queueName);
             return true;
         } catch (\Exception $e) {
-            // echo "called";
-            throw new \Exception("queue_message_insert_faliure-" . $e);
+            throw new \Exception("Error While Insertion - " . $e);
         }
     }
 
@@ -273,7 +274,7 @@ class Logging
         try {
             $this->publishMessage($log, $type);
         } catch (\Exception $e) {
-            throw new \Exception("queue_message_insert_faliure-" . $e);
+            throw new \Exception("Error While Insertion - " . $e);
         }
     }
 
@@ -285,10 +286,13 @@ class Logging
      */
     private function makeLog($message, array $data = [])
     {
+        $d = new \DateTime();
+
         return json_encode(
             array_merge(
                 [
-                    'message' => $message
+                    'message' => $message,
+                    'time' => $d->format("Y-m-d H:i:s")
 
                 ],
                 $data

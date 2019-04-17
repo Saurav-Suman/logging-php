@@ -27,7 +27,6 @@ class LoggingTest extends TestCase
         $this->Loggertest->setRabbitmqPort("5672");
         $this->Loggertest->setRabbitmqUser("guest");
         $this->Loggertest->setRabbitmqPassword("guest");
-        $this->Loggertest->setLoggerTimeFormat("time.RFC3339");
         $this->Loggertest->setQueuePrefix("ayopop");
         $this->Loggertest->setQueueNames(array(
             "Api" => "api",
@@ -51,7 +50,6 @@ class LoggingTest extends TestCase
         $this->Loggertest->setRabbitmqPort("56720");
         $this->Loggertest->setRabbitmqUser("guest");
         $this->Loggertest->setRabbitmqPassword("guest");
-        $this->Loggertest->setLoggerTimeFormat("time.RFC3339");
         $this->Loggertest->setQueuePrefix("ayopop");
         $this->Loggertest->setQueueNames(array(
             "Api" => "api",
@@ -75,7 +73,6 @@ class LoggingTest extends TestCase
         $this->Loggertest->setRabbitmqPort("5672");
         $this->Loggertest->setRabbitmqUser("saurav");
         $this->Loggertest->setRabbitmqPassword("guest");
-        $this->Loggertest->setLoggerTimeFormat("time.RFC3339");
         $this->Loggertest->setQueuePrefix("ayopop");
         $this->Loggertest->setQueueNames(array(
             "Api" => "api",
@@ -98,7 +95,6 @@ class LoggingTest extends TestCase
             $this->Loggertest->setRabbitmqPort("5672");
             $this->Loggertest->setRabbitmqUser("guest");
             $this->Loggertest->setRabbitmqPassword("guest");
-            $this->Loggertest->setLoggerTimeFormat("time.RFC3339");
             $this->Loggertest->setQueuePrefix("ayopop");
             $this->Loggertest->setQueueNames(array(
                 "Api" => "api",
@@ -124,7 +120,6 @@ class LoggingTest extends TestCase
         $Logger->setRabbitmqPort("5672");
         $Logger->setRabbitmqUser("guest");
         $Logger->setRabbitmqPassword("guest");
-        $Logger->setLoggerTimeFormat("time.RFC3339");
         $Logger->setQueuePrefix("ayopop");
         $Logger->setQueueNames(array(
             "Api" => "api",
@@ -152,7 +147,6 @@ class LoggingTest extends TestCase
         $Logger->setRabbitmqPort("5672");
         $Logger->setRabbitmqUser("guest");
         $Logger->setRabbitmqPassword("guest");
-        $Logger->setLoggerTimeFormat("time.RFC3339");
         $Logger->setQueuePrefix("ayopop");
         $Logger->setQueueNames(array(
             "Api" => "api",
@@ -180,7 +174,6 @@ class LoggingTest extends TestCase
         $Logger->setRabbitmqPort("5672");
         $Logger->setRabbitmqUser("guest");
         $Logger->setRabbitmqPassword("guest");
-        $Logger->setLoggerTimeFormat("time.RFC3339");
         $Logger->setQueuePrefix("ayopop");
         $Logger->setQueueNames(array(
             "Api" => "api",
@@ -207,7 +200,6 @@ class LoggingTest extends TestCase
         $Logger->setRabbitmqPort("5672");
         $Logger->setRabbitmqUser("guest");
         $Logger->setRabbitmqPassword("guest");
-        $Logger->setLoggerTimeFormat("time.RFC3339");
         $Logger->setQueuePrefix("ayopop");
         $Logger->setQueueNames(array(
             "Api" => "api",
