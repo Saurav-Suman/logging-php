@@ -13,7 +13,7 @@ class Amqp
 {
     private $connection;
     private $channel;
-    
+
     /**
      * This function gets the Amqp connection and creates a new channel. As we dont need any user inputs for these.. We
      * can create them in constructor
@@ -27,7 +27,7 @@ class Amqp
 
             $this->channel = $this->connection->channel();
         } catch (\Exception  $e) {
-            throw new \Exception("RabbitMQ Connection Failure - ".$e);
+            throw new \Exception("RabbitMQ Connection Failure - " . $e);
         }
     }
 
@@ -38,12 +38,12 @@ class Amqp
      */
     public function insertMessage($message, $rmqQueueName)
     {
-         try {
-            $this->channel->queue_declare($rmqQueueName, false, false, false, false); 
+        try {
+            $this->channel->queue_declare($rmqQueueName, false, false, false, false);
             $msg = new AMQPMessage($message);
             $this->channel->basic_publish($msg, '', $rmqQueueName);
         } catch (\Exception  $e) {
-            throw new \Exception("Error While Insertion - ".$e);
+            throw new \Exception("Error While Insertion - " . $e);
         }
     }
 }

@@ -1,10 +1,11 @@
 {
     "name": "saurav-suman/logger",
 	"description": "PHP client to publish realtime logs to rabbitmq",
-	"keywords": [],
+	"keywords": ["log", "logging", "logger", "syslog", "error", "debug", "debugging", "alerts","rabbitmq"],
 	"authors": [
         {
             "name": "Saurav Suman",
+            "email": "jnu.saurav@gmail.com",
             "homepage": "http://sauravsuman.com/"
         }
     ],
