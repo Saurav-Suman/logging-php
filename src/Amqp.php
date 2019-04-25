@@ -34,14 +34,14 @@ class Amqp
     /**
      * This function inserts a message in to the queue
      * @param $message is the message that needs to be sent.
-     * @param $rmqQueueName is the queue name
+     * @param $exchange is the Excahnge name
+     * @param $queue is the queue name
      */
-    public function insertMessage($message, $rmqQueueName)
+    public function insertMessage($message, $exchange, $queue)
     {
         try {
-            $this->channel->queue_declare($rmqQueueName, false, false, false, false);
             $msg = new AMQPMessage($message);
-            $this->channel->basic_publish($msg, '', $rmqQueueName);
+            $this->channel->basic_publish($msg, $exchange, $queue);
         } catch (\Exception  $e) {
             throw new \Exception("Error While Insertion - " . $e);
         }

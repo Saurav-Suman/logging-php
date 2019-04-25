@@ -179,7 +179,7 @@ class Logging
     public function publishMessage($message_details, $queueName)
     {
         try {
-            $this->amqpConnection->insertMessage($message_details, $this->QueuePrefix . "." . $queueName);
+            $this->amqpConnection->insertMessage($message_details, $this->QueuePrefix, $queueName);
             return true;
         } catch (\Exception $e) {
             throw new \Exception("Error While Insertion - " . $e);
@@ -191,7 +191,7 @@ class Logging
     /**
      * Send an info log
      *
-     * @param string $message The log message
+     * @param array $message The log message
      * @param array $data Additional data
      */
     public function info($message, array $data = [])
@@ -202,7 +202,7 @@ class Logging
     /**
      * Send an warning log
      *
-     * @param string $message The log message
+     * @param array $message The log message
      * @param array $data Additional data
      */
     public function warning($message, array $data = [])
@@ -213,7 +213,7 @@ class Logging
     /**
      * Send an error log
      *
-     * @param string $message The log message
+     * @param array $message The log message
      * @param array $data Additional data
      */
     public function error($message, array $data = [])
@@ -224,7 +224,7 @@ class Logging
     /**
      * Send an debug log
      *
-     * @param string $message The log message
+     * @param array $message The log message
      * @param array $data Additional data
      */
     public function debug($message, array $data = [])
@@ -236,7 +236,7 @@ class Logging
     /**
      * Send an CRITICAL log
      *
-     * @param string $message The log message
+     * @param array $message The log message
      * @param array $data Additional data
      */
     public function critical($message, array $data = [])
@@ -250,7 +250,7 @@ class Logging
      * Add the log to list or send now
      *
      * @param string $type The log type
-     * @param string $message The log message
+     * @param array $message The log message
      * @param array $data Additional data
      */
     private function log($type, $message, array $data)
@@ -281,23 +281,14 @@ class Logging
     /**
      * Format the log to send
      *
-     * @param string $message The log message
+     * @param array $message The log message
      * @param array $data Additional data
      */
     private function makeLog($message, array $data = [])
     {
         $d = new \DateTime();
-
-        return json_encode(
-            array_merge(
-                [
-                    'message' => $message,
-                    'time' => $d->format("Y-m-d H:i:s")
-
-                ],
-                $data
-            )
-        );
+        $message['Timestamp'] = $d->format("Y-m-d H:i:s");
+        return json_encode($message);
     }
 
 
