@@ -186,8 +186,8 @@ class Logging
         }
     }
 
-     /**
-     * Send an api log
+    /**
+     * Send an api log 
      *
      * @param array $message The log message
      * @param array $data Additional data
@@ -196,6 +196,8 @@ class Logging
     {
         $this->log('api', $message, $data);
     }
+
+
 
     /**
      * Send an info log
