@@ -4,10 +4,10 @@ require __DIR__.'../../vendor/autoload.php';
 use Logging\Logging;
 
 $log=Logging::getInstance();
-$log->setRabbitmqHost("13.232.191.83");
-$log->setRabbitmqPort("31395");
-$log->setRabbitmqUser("ayopop");
-$log->setRabbitmqPassword("reverse_J2Vcx");
+$log->setRabbitmqHost("127.0.0.1");
+$log->setRabbitmqPort("5672");
+$log->setRabbitmqUser("guest");
+$log->setRabbitmqPassword("guest");
 $log->setQueuePrefix("ayopop");
 $log->setQueueNames(array("Api" => "api",
     "Debug" => "debug",
