@@ -297,8 +297,7 @@ class Logging
      */
     private function makeLog($message, array $data = [])
     {
-        $d = new \DateTime();
-        $message['Timestamp'] = $d->format("Y-m-d H:i:s");
+        $message['Timestamp'] = date('Y-m-d\TH:i:s.Z\Z', time());
         return json_encode($message);
     }
 
