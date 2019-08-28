@@ -187,6 +187,16 @@ class Logging
     }
 
 
+    /**
+     * Send an api log
+     *
+     * @param array $message The log message
+     * @param array $data Additional data
+     */
+    public function api($message, array $data = [])
+    {
+        $this->log('api', $message, $data);
+    }
 
     /**
      * Send an info log
