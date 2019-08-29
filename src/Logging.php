@@ -301,7 +301,7 @@ class Logging
 
     /**
      * Format the log to send
-     * added default timezone UTC
+     * added default timezone UTC with iso 8601 format
      * @param array $message The log message
      * @param array $data Additional data
      */
