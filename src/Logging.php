@@ -307,9 +307,9 @@ class Logging
      */
     private function makeLog($message, array $data = [])
     {
-        $date = new \DateTime();
-        $date->setTimezone(new \DateTimeZone('Asia/Jakarta'));
-        $message['Timestamp'] = $date->format('Y-m-dTH:i:s.ZZ');
+        $dt = new DateTime();
+        $dt->setTimezone(new DateTimeZone('UTC'));
+        $message['Timestamp'] =  $dt->format('Y-m-d\TH:i:s.u\Z');
         return json_encode($message);
     }
 
