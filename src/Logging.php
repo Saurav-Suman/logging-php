@@ -296,8 +296,8 @@ class Logging
      */
     private function makeLog($message, array $data = [])
     {
-        $dt = new DateTime();
-        $dt->setTimezone(new DateTimeZone('UTC'));
+        $dt = new \DateTime();
+        $dt->setTimezone(new \DateTimeZone('UTC'));
         $message['Timestamp'] =  $dt->format('Y-m-d\TH:i:s.u\Z');
         return json_encode($message);
     }
