@@ -301,14 +301,14 @@ class Logging
 
     /**
      * Format the log to send
-     *
+     * added default timezone UTC
      * @param array $message The log message
      * @param array $data Additional data
      */
     private function makeLog($message, array $data = [])
     {
-        $dt = new DateTime();
-        $dt->setTimezone(new DateTimeZone('UTC'));
+        $dt = new \DateTime();
+        $dt->setTimezone(new \DateTimeZone('UTC'));
         $message['Timestamp'] =  $dt->format('Y-m-d\TH:i:s.u\Z');
         return json_encode($message);
     }
